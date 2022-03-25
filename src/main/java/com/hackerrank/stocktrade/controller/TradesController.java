@@ -3,11 +3,13 @@ package com.hackerrank.stocktrade.controller;
 import com.hackerrank.stocktrade.exceptions.TradeIdAlreadyExistsException;
 import com.hackerrank.stocktrade.exceptions.TradeNotFoundException;
 import com.hackerrank.stocktrade.model.Trade;
+import com.hackerrank.stocktrade.model.User;
 import com.hackerrank.stocktrade.service.TradeService;
 import java.util.List;
 import java.util.Optional;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -37,8 +39,8 @@ public class TradesController {
     public Trade createTrade(@Valid @RequestBody Trade trade) {
         return tradeService.createTrade(trade);
     }
-    
-     // Creates a new trade
+
+    // Creates a new trade
     @PostMapping("/trades")
     public ResponseEntity createTrade2(@RequestBody Trade trade) throws TradeIdAlreadyExistsException {
         Trade savedTrade = tradeService.createTrade(trade);
@@ -48,24 +50,33 @@ public class TradesController {
     // Get a Trade by Id
     @GetMapping(value = "/trades/{id}")
     public Optional<Trade> getTrade2(@PathVariable("Id") Long id) {
-        
+
         Optional<Trade> trade = tradeService.getTradeId(id);
-        if(trade == null)
+        if (trade == null) {
             throw new TradeNotFoundException();
+        }
         return tradeService.getTradeId(id);
     }
-    
-    
+
     // Gets all trades
-         @GetMapping
+    @GetMapping
     public Iterable<Trade> getAllTrades() {
-      return tradeService.getAllTrades();
-       
-    }
+        Iterable<Trade> savedTrade = tradeService.getAllTrades();
+        return tradeService.getAllTrades();
+          }
     
+  
+    
+     // Get a Traderecord filtered by user id
+  /*  @GetMapping(value = "/trades/users/{userid}")
+    public Optional<Trade> getTradeByUserid(@QueryParam("userid") String id) {
+      user = new user();
+            user.getId();
+       
+    }*/
+    
+     
    
     
-    
- 
-     
+
 }

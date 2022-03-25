@@ -5,6 +5,7 @@
 package com.hackerrank.stocktrade.service;
 
 import com.hackerrank.stocktrade.model.Trade;
+import com.hackerrank.stocktrade.model.User;
 import com.hackerrank.stocktrade.repository.TradeRepository;
 import java.util.List;
 import java.util.Optional;
@@ -47,14 +48,5 @@ public class TradeService {
  
 
 
-    
-    // UPDATE
-public Employee updateEmployee(Long empId, Employee employeeDetails) {
-        Employee emp = empRepository.findById(empId).get();
-        emp.setFirstName(employeeDetails.getFirstName());
-        emp.setLastName(employeeDetails.getLastName());
-        emp.setEmailId(employeeDetails.getEmailId());
-        
-        return empRepository.save(emp);                                
-}*/
+
 }

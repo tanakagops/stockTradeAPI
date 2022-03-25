@@ -79,4 +79,8 @@ public class Trade {
     public void setTimestamp(Timestamp timestamp) {
         this.timestamp = timestamp;
     }
+    
+    public void getTradeByUserId(){
+    
+    }
 }
